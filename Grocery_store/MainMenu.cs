@@ -12,14 +12,26 @@ namespace Grocery_store
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
+        private LogIn loginForm; // Добавлено поле для хранения ссылки на форму LogIn
+
+        public MainMenu(LogIn loginForm) // Добавлен конструктор, принимающий экземпляр формы LogIn
         {
             InitializeComponent();
+            this.loginForm = loginForm; // Сохраняем ссылку на форму LogIn
+
+            this.Load += MainMenu_Load;
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-
+            if (loginForm.IsButton3Visible)
+            {
+                button3.Visible = true;
+            }
+            else
+            {
+                button3.Visible = false;
+            }
         }
 
         private void Оповещения_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,13 +54,10 @@ namespace Grocery_store
 
         public void button3_Click(object sender, EventArgs e)
         {
-            Employees employees = new Employees(); 
+            Employees employees = new Employees();
             employees.Show();
             this.Hide();
         }
-        public void SetButton3Visibility(bool isVisible)
-        {
-            button3.Visible = isVisible;
-        }
+
     }
 }

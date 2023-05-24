@@ -26,38 +26,21 @@ namespace Grocery_store
 
         private void button1_Click(object sender, EventArgs e)
         {
-            {
-                string text1 = textBox1.Text;
-                string text2 = textBox2.Text;
+            string text1 = textBox1.Text;
+            string text2 = textBox2.Text;
 
-                if (text1 == "менеджер" && text2 == "менеджер")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "продавец" && text2 == "продавец")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "товаровед" && text2 == "товаровед")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "кладовщик" && text2 == "кладовщик")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Ошибка при вводе логина или пароля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            if (text1 == "менеджер" && text2 == "менеджер" ||
+                text1 == "продавец" && text2 == "продавец" ||
+                text1 == "товаровед" && text2 == "товаровед" ||
+                text1 == "кладовщик" && text2 == "кладовщик")
+            {
+                MainMenu mainMenu = new MainMenu(this);
+                mainMenu.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка при вводе логина или пароля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -74,28 +57,14 @@ namespace Grocery_store
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            CheckButtonVisibility();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            CheckButtonVisibility();
         }
-
-        private void CheckButtonVisibility()
+        public bool IsButton3Visible
         {
-            string text1 = textBox1.Text;
-            string text2 = textBox2.Text;
-
-            if (text1 == "менеджер" && text2 == "менеджер")
-            {
-                mainMenu.SetButton3Visibility(true);
-            }
-            else
-            {
-                mainMenu.SetButton3Visibility(false);
-            }
+            get { return textBox1.Text == "менеджер" && textBox2.Text == "менеджер"; }
         }
-
     }
 }
