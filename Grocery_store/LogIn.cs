@@ -12,16 +12,11 @@ namespace Grocery_store
 {
     public partial class LogIn : Form
     {
+        public static bool IsButton3Visible { get; private set; }
+
         public LogIn()
         {
-
             InitializeComponent();
- 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +29,8 @@ namespace Grocery_store
                 text1 == "товаровед" && text2 == "товаровед" ||
                 text1 == "кладовщик" && text2 == "кладовщик")
             {
+                IsButton3Visible = textBox1.Text == "менеджер" && textBox2.Text == "менеджер";
+
                 MainMenu mainMenu = new MainMenu(this);
                 mainMenu.Show();
                 this.Hide();
@@ -44,6 +41,10 @@ namespace Grocery_store
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void LogIn_Load(object sender, EventArgs e)
         {
@@ -61,10 +62,6 @@ namespace Grocery_store
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-        }
-        public bool IsButton3Visible
-        {
-            get { return textBox1.Text == "менеджер" && textBox2.Text == "менеджер"; }
         }
     }
 }
