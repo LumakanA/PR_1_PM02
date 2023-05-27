@@ -19,23 +19,11 @@ namespace Grocery_store
             InitializeComponent();
             this.mainMenu = mainMenu;
         }
-
-        private void Employees_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.mainMenu.Show();
             this.Close();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
@@ -50,13 +38,17 @@ namespace Grocery_store
             else
             {
                 MessageBox.Show("Сотрудник успешно зарегистрирован", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
             }
         }
-
-
         private void button5_Click(object sender, EventArgs e)
         {
-            Messages messages = new Messages();
+            Messages messages = new Messages(mainMenu);
             messages.Show();
             this.Close();
         }
@@ -67,5 +59,18 @@ namespace Grocery_store
             employees.Show();
             this.Close();
         }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox7.Text))
+            {
+                MessageBox.Show("Вы не указали один из параметров. Удаление невозможно.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Сотрудник успешно удален", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox7.Clear();
+            }
+        }
+
     }
 }

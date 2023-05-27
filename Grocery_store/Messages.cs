@@ -1,40 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Grocery_store
 {
     public partial class Messages : Form
     {
-        public Messages()
+        private MainMenu mainMenuForm;
+        public Messages(MainMenu mainMenuForm)
         {
             InitializeComponent();
+            this.mainMenuForm = mainMenuForm;
         }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            if (checkedListBox1.CheckedItems.Count == 0)
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                MessageBox.Show("Ошибка: Вы должны выбрать получателей сообщения.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ошибка: Вы должны ввести текст сообщения.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                string messageText = textBox1.Text;
+                DateTime currentDateTime = DateTime.Now;
+                int messageNumber = MessageData.Messages.Count + 1;
+                Message message = new Message(messageNumber, messageText, currentDateTime);
+                MessageData.Messages.Add(message);
                 MessageBox.Show("У вас новое сообщение!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Clear();
             }
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             LogIn loginForm = new LogIn();
@@ -43,9 +37,7 @@ namespace Grocery_store
             employees.Show();
             this.Close();
         }
-
         private bool isRadioButtonChecked = false;
-
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
@@ -58,6 +50,11 @@ namespace Grocery_store
                 }
             }
         }
-
+        public event Action<string> MessageTextChanged;
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string messageText = textBox1.Text;
+            MessageTextChanged?.Invoke(messageText);
+        }
     }
 }

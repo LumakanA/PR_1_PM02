@@ -13,12 +13,11 @@ namespace Grocery_store
     public partial class Product : Form
     {
         private MainMenu mainMenu;
-
         public Product(MainMenu mainMenu)
         {
             InitializeComponent();
             this.mainMenu = mainMenu;
-        }   
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox5.Text) || string.IsNullOrEmpty(textBox6.Text))
@@ -30,19 +29,33 @@ namespace Grocery_store
             {
                 MessageBox.Show("Товар успешно зарегистрирован.", "Уведомление",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
             }
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox7.Text) || string.IsNullOrEmpty(textBox8.Text) || string.IsNullOrEmpty(textBox9.Text) || string.IsNullOrEmpty(textBox10.Text) || string.IsNullOrEmpty(textBox11.Text) || string.IsNullOrEmpty(textBox12.Text))
             {
-                MessageBox.Show("Вы не указали один из параметров. Удаление невозможна.", "Ошибка",
+                MessageBox.Show("Вы не указали один из параметров. Удаление невозможно.", "Ошибка",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MessageBox.Show("Товар успешно удален.", "Уведомление",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox7.Clear();
+                textBox8.Clear();
+                textBox9.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
+                textBox12.Clear();
             }
         }
         private void button1_Click(object sender, EventArgs e)
