@@ -12,90 +12,39 @@ namespace Grocery_store
 {
     public partial class LogIn : Form
     {
+        public static bool IsButton3Visible { get; private set; }
+
         public LogIn()
         {
-
             InitializeComponent();
- 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            {
-                string text1 = textBox1.Text;
-                string text2 = textBox2.Text;
-
-                if (text1 == "менеджер" && text2 == "менеджер")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "продавец" && text2 == "продавец")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "товаровед" && text2 == "товаровед")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else if (text1 == "кладовщик" && text2 == "кладовщик")
-                {
-                    MainMenu mainmenu = new MainMenu();
-                    mainmenu.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Ошибка при вводе логина или пароля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-
-        private void LogIn_Load(object sender, EventArgs e)
-        {
-
-        }
-        private MainMenu mainMenu;
-        public LogIn(MainMenu mainMenu)
-        {
-            this.mainMenu = mainMenu;
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            CheckButtonVisibility();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            CheckButtonVisibility();
-        }
-
-        private void CheckButtonVisibility()
-        {
             string text1 = textBox1.Text;
             string text2 = textBox2.Text;
 
-            if (text1 == "менеджер" && text2 == "менеджер")
+            if (text1 == "менеджер" && text2 == "менеджер" ||
+                text1 == "продавец" && text2 == "продавец" ||
+                text1 == "товаровед" && text2 == "товаровед" ||
+                text1 == "кладовщик" && text2 == "кладовщик")
             {
-                mainMenu.SetButton3Visibility(true);
+                IsButton3Visible = textBox1.Text == "менеджер" && textBox2.Text == "менеджер";
+                MainMenu mainMenu = new MainMenu(this);
+                mainMenu.Show();
+                this.Hide();
+                textBox1.Clear();
+                textBox2.Clear();
             }
             else
             {
-                mainMenu.SetButton3Visibility(false);
+                MessageBox.Show("Ошибка при вводе логина или пароля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private MainMenu mainMenu;
+        public LogIn(MainMenu mainMenu) : base()
+        {
+            this.mainMenu = mainMenu;
+        }
     }
 }

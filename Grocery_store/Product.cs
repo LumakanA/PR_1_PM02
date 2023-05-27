@@ -12,69 +12,13 @@ namespace Grocery_store
 {
     public partial class Product : Form
     {
-        public Product()
+        private MainMenu mainMenu;
+        public Product(MainMenu mainMenu)
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox12_TextChanged(object sender, EventArgs e)
-        {
-
+            this.mainMenu = mainMenu;
         }
         private void button2_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBox7.Text) || string.IsNullOrEmpty(textBox8.Text) || string.IsNullOrEmpty(textBox9.Text) || string.IsNullOrEmpty(textBox10.Text) || string.IsNullOrEmpty(textBox11.Text) || string.IsNullOrEmpty(textBox12.Text))
-            {
-                MessageBox.Show("Вы не указали один из параметров. Регистрация невозможна.", "Ошибка",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MessageBox.Show("Товар успешно зарегистрирован.", "Уведомление",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox5.Text) || string.IsNullOrEmpty(textBox6.Text))
             {
@@ -85,17 +29,46 @@ namespace Grocery_store
             {
                 MessageBox.Show("Товар успешно зарегистрирован.", "Уведомление",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(textBox7.Text) || string.IsNullOrEmpty(textBox8.Text) || string.IsNullOrEmpty(textBox9.Text) || string.IsNullOrEmpty(textBox10.Text) || string.IsNullOrEmpty(textBox11.Text) || string.IsNullOrEmpty(textBox12.Text))
+            {
+                MessageBox.Show("Вы не указали один из параметров. Удаление невозможно.", "Ошибка",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Товар успешно удален.", "Уведомление",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox7.Clear();
+                textBox8.Clear();
+                textBox9.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
+                textBox12.Clear();
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.mainMenu.Show();
+            this.Close();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-
+            ListOfProducts listOfProductsForm = new ListOfProducts();
+            listOfProductsForm.Show();
+            this.Hide();
         }
     }
 }

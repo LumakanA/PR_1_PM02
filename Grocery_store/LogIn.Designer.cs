@@ -51,7 +51,6 @@ namespace Grocery_store
             label1.TabIndex = 0;
             label1.Text = "Добро пожаловать!\r\nАвторизуйтесь, пожалуйста.";
             label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -71,7 +70,6 @@ namespace Grocery_store
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(478, 33);
             this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
@@ -91,7 +89,7 @@ namespace Grocery_store
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(478, 33);
             this.textBox2.TabIndex = 4;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.UseSystemPasswordChar = true;
             // 
             // button1
             // 
@@ -118,7 +116,6 @@ namespace Grocery_store
             this.Name = "LogIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogIn";
-            this.Load += new System.EventHandler(this.LogIn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
